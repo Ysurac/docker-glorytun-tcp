@@ -13,4 +13,5 @@ RUN tar xzf /tmp/glorytun-${version}.tar.gz
 WORKDIR /tmp/glorytun-${version}
 RUN ./autogen.sh && ./configure
 RUN make && make install
+RUN rm -rf /tmp/glorytun-${version}
 CMD /usr/sbin/glorytun.sh
