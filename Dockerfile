@@ -9,10 +9,10 @@ ADD glorytun.sh /usr/sbin/glorytun.sh
 ENV version 0.0.35
 WORKDIR /tmp
 ADD https://github.com/angt/glorytun/releases/download/v${version}/glorytun-${version}.tar.gz /tmp/glorytun-${version}.tar.gz
-RUN tar xzf /tmp/glorytun-${version}.tar.gz
-WORKDIR /tmp/glorytun-${version}
-RUN ./autogen.sh && ./configure
-RUN make && make install
-RUN rm -rf /tmp/glorytun-${version}
-RUN apk del autoconf automake build-base gcc linux-headers
+RUN tar xzf /tmp/glorytun-${version}.tar.gz \
+    && cd /tmp/glorytun-${version} \
+    && ./autogen.sh && ./configure \
+    && make && make install \
+    && rm -rf /tmp/glorytun-${version} \
+    && apk del autoconf automake build-base gcc linux-headers
 CMD /usr/sbin/glorytun.sh
