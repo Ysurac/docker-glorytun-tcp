@@ -14,4 +14,5 @@ WORKDIR /tmp/glorytun-${version}
 RUN ./autogen.sh && ./configure
 RUN make && make install
 RUN rm -rf /tmp/glorytun-${version}
+RUN apk del autoconf automake build-base gcc linux-headers
 CMD /usr/sbin/glorytun.sh
